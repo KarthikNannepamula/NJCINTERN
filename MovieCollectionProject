@@ -1,0 +1,28 @@
+//Creating Dbase in MysQl
+create database NJCIntern
+//using the Dbase 
+use NJCIntern
+//Create Table MovieDetails
+Create table MovieDetails(MovieName varchar(20) ,ActorName varchar(20),ActressName varchar(20), YoRelease int, DirectorName varchar(20));
+//Insert Into Table
+Insert into MovieDetails values("The Shawshank Redemption","Tim Robbins",null,1994," Frank Darabont");
+Insert into MovieDetails values("Nayagan","Kamal","Saranya",1987,"ManiRatnam");
+Insert into MovieDetails values("NinetySix","VijaySethupathi","Trisha",2018," PremKumar");
+Insert into MovieDetails values("Sheershah","SidMalhotra","Kiara",2021,"Verma");
+Insert into MovieDetails values("Pagal","VishwakSen","Nivetha",2021,"Naresh");
+// Java Program to retrieve the details of Table
+public static void main(String[] args) {
+try {
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con = DriverManager.getConnection(
+"jdbc:mysql://localhost:3306/Njcprogram","root","Password123");
+Statement stmt=con.createStatement();
+ResultSet rs=stmt.executeQuery("select * from MovieDetails");
+System.out.print("MovieName  ActorName  ActressName YoRelease DirectorName");
+while(rs.next())
+System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getInt(4)+" "+rs.getString(5));
+   con.close();
+      }
+catch(Exception e) {
+System.out.println(e);
+}
